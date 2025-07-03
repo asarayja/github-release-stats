@@ -55,7 +55,7 @@ function getUserRepos() {
         $.each(data, function(index, item) {
             repoNames.push(item.name);
         });
-        autoComplete.data('typeahead').source = repoNames; // Sett source etter data er hentet
+        autoComplete.data('typeahead').source = repoNames;
     });
 }
 
@@ -113,17 +113,17 @@ function showStats(data) {
                 downloadInfoHTML += "<h4><span class='glyphicon glyphicon-download'></span>&nbsp;&nbsp;" +
                     "Download Info</h4>";
 
-                downloadInfoHTML += "<ul>";
+                downloadInfoHTML += "<ul style='list-style: disc inside; padding-left: 0;'>";
 
                 $.each(releaseAssets, function(index, asset) {
                     var assetSize = (asset.size / 1048576.0).toFixed(2);
                     var lastUpdate = asset.updated_at.split("T")[0];
 
-                    // Lag filnavnet som klikkbar lenke
-                    downloadInfoHTML += "<li><a href='" + asset.browser_download_url + "' target='_blank' rel='noopener noreferrer'>" 
-                        + asset.name + "</a> (" + assetSize + "&nbsp;MiB) - " +
-                        "downloaded " + formatNumber(asset.download_count) + "&nbsp;times. " +
-                        "Last&nbsp;updated&nbsp;on&nbsp;" + lastUpdate + "</li>";
+                    downloadInfoHTML += "<li style='padding: 4px 0;'>" +
+                        "<a href='" + asset.browser_download_url + "' target='_blank' rel='noopener noreferrer' " + 
+                        "style='color:#a8ff9e; font-weight:600; text-decoration:underline;'>" + asset.name + "</a>" + 
+                        " (" + assetSize + " MiB) - downloaded " + formatNumber(asset.download_count) + " times. Last updated on " + lastUpdate +
+                        "</li>";
 
                     totalDownloadCount += asset.download_count;
                     releaseDownloadCount += asset.download_count;
@@ -132,11 +132,12 @@ function showStats(data) {
                 downloadInfoHTML += "</ul>";
             }
 
-            html += "<div class='row " + releaseClassNames + "'>";
+            html += "<div class='row " + releaseClassNames + "' style='margin-bottom: 20px;'>";
 
             html += "<h3><span class='glyphicon glyphicon-tag'></span>&nbsp;&nbsp;" +
-                "<a href='" + releaseURL + "' target='_blank' rel='noopener noreferrer'>" + releaseTag + "</a>" +
-                releaseBadge + "</h3>" + "<hr class='release-hr'>";
+                "<a href='" + releaseURL + "' target='_blank' rel='noopener noreferrer' " + 
+                "style='color:#a8ff9e; font-weight:700;'>" + releaseTag + "</a>" +
+                releaseBadge + "</h3><hr class='release-hr' style='border-color: rgba(255, 255, 255, 0.3);'>";
 
             html += "<h4><span class='glyphicon glyphicon-info-sign'></span>&nbsp;&nbsp;" +
                 "Release Info</h4>";
@@ -145,7 +146,8 @@ function showStats(data) {
 
             if (releaseAuthor) {
                 html += "<li><span class='glyphicon glyphicon-user'></span>&nbsp;&nbsp;" +
-                    "Author: <a href='" + releaseAuthor.html_url + "' target='_blank' rel='noopener noreferrer'>@" + releaseAuthor.login  +"</a></li>";
+                    "Author: <a href='" + releaseAuthor.html_url + "' target='_blank' rel='noopener noreferrer' " + 
+                    "style='color:#a8ff9e; font-weight:600;'>@" + releaseAuthor.login  +"</a></li>";
             }
 
             html += "<li><span class='glyphicon glyphicon-calendar'></span>&nbsp;&nbsp;" +
