@@ -15,7 +15,7 @@ function getQueryVariable(variable) {
 
 // Format numbers with commas
 function formatNumber(value) {
-    return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')
+    return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
 }
 
 // Validate the user input and enable/disable button
@@ -47,7 +47,7 @@ function getUserRepos() {
         afterSelect: function() {
             $("#get-stats-button").click();
         }
-     });
+    });
     var repoNames = [];
 
     var url = apiRoot + "users/" + user + "/repos";
@@ -55,9 +55,8 @@ function getUserRepos() {
         $.each(data, function(index, item) {
             repoNames.push(item.name);
         });
+        autoComplete.data('typeahead').source = repoNames; // Sett source etter data er hentet
     });
-
-    autoComplete.data('typeahead').source = repoNames;
 }
 
 // Display the stats with clickable download links
@@ -120,7 +119,9 @@ function showStats(data) {
                     var assetSize = (asset.size / 1048576.0).toFixed(2);
                     var lastUpdate = asset.updated_at.split("T")[0];
 
-                    downloadInfoHTML += "<li><a href='" + asset.browser_download_url + "' target='_blank' rel='noopener noreferrer'>" + asset.name + "</a> (" + assetSize + "&nbsp;MiB) - " +
+                    // Lag filnavnet som klikkbar lenke
+                    downloadInfoHTML += "<li><a href='" + asset.browser_download_url + "' target='_blank' rel='noopener noreferrer'>" 
+                        + asset.name + "</a> (" + assetSize + "&nbsp;MiB) - " +
                         "downloaded " + formatNumber(asset.download_count) + "&nbsp;times. " +
                         "Last&nbsp;updated&nbsp;on&nbsp;" + lastUpdate + "</li>";
 
