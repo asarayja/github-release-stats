@@ -1,11 +1,15 @@
+/* --- Generell stil --- */
+
 html * {
     font-family: 'Roboto', sans-serif;
 }
 
+/* Lenker */
 a, a:hover {
     color: rgba(66, 139, 202, 1);
 }
 
+/* Kodeblokker */
 code {
     font-family: 'Roboto Mono', monospace;
     background-color: rgba(127, 140, 141, 0.1);
@@ -13,6 +17,7 @@ code {
     white-space: nowrap;
 }
 
+/* Form-elementer */
 .form-group {
     width: 100%;
 }
@@ -21,15 +26,18 @@ code {
     width: 100%;
 }
 
+/* Resultatseksjon */
 #stats-result {
     margin-top: 50px;
 }
 
+/* Varslinger */
 .alert.output {
     font-size: 18px;
     text-align: center;
 }
 
+/* Total nedlastinger */
 .total-downloads {
     margin-bottom: 25px;
     text-align: center;
@@ -41,6 +49,7 @@ code {
     margin-right: 10px;
 }
 
+/* Release info */
 .release {
     background-color: rgba(127, 140, 141, 0.1);
     border: solid 1px rgba(127, 140, 141, 0.4);
@@ -49,38 +58,94 @@ code {
     margin-bottom: 10px;
 }
 
-.release h3 .glyphicon {
-    cursor: default;
-    color: rgba(66, 139, 202, 1);
-}
-
-.release h3 .badge {
-    cursor: default;
-    background-color: rgba(66, 139, 202, 1);
-    color: #fff;
-}
-
-.release-hr {
-    border-top-color: rgba(127, 140, 141, 0.4);
-}
-
+/* --- Ny stil for latest-release som btn-primary --- */
 .latest-release {
-    background-color: rgba(92, 184, 92, 0.2);
-    border-color: rgba(92, 184, 92, 0.4);
+    background-color: #2a66c8 !important; /* Mørkere blå bakgrunn */
+    border: 1px solid #1f4ea8 !important; /* Mørkere kant */
+    color: white !important;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-.latest-release h3, .latest-release h3 .glyphicon, .latest-release h3 a {
-    color: rgba(92, 184, 92, 1);
+.latest-release h3 {
+    font-weight: 700;
+    font-size: 1.8em;
+    margin-bottom: 0.5em;
+    color: #a8ff9e !important; /* Lys grønn */
 }
 
 .latest-release h3 .badge {
-    background-color: rgba(92, 184, 92, 1);
+    background-color: #3cb371 !important; /* Medium sea green */
+    color: white !important;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    vertical-align: middle;
+}
+
+.latest-release h4 {
+    font-weight: 600;
+    font-size: 1.3em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    color: white !important;
+}
+
+.latest-release ul {
+    margin-left: 1.5em;
+    color: white !important;
+    font-size: 1em;
+    line-height: 1.4em;
+    padding-left: 0;
+    list-style: disc;
+}
+
+.latest-release ul li {
+    margin-bottom: 0.4em;
+}
+
+/* Lenker til forfatter @navn i release-info - grønn */
+.latest-release ul li a[href*="github.com"][href*="asarayja"] {
+    color: #a8ff9e !important; /* Lys grønn */
+    font-weight: 600;
+}
+
+/* Lenker til nedlastingsfiler i download info - grønn */
+.latest-release ul li a[href$=".exe"],
+.latest-release ul li a[href$=".zip"],
+.latest-release ul li a[href$=".tar.gz"],
+.latest-release ul li a[href$=".7z"] {
+    color: #a8ff9e !important; /* Lys grønn */
+    font-weight: 600;
+}
+
+/* Vanlige lenker i nedlasting (andre) - lys blå */
+.latest-release ul li a:not([href*="asarayja"]):not([href$=".exe"]):not([href$=".zip"]):not([href$=".tar.gz"]):not([href$=".7z"]) {
+    color: #a8d0ff !important; /* Lys blå */
+    font-weight: 600;
+}
+
+.latest-release ul li a:hover {
+    color: #7adb6b !important; /* Mørkere grønn på hover */
+    text-decoration: underline;
+}
+
+/* Ikoner, lenker og badge i h3 i grønn farge */
+.latest-release h3 .glyphicon,
+.latest-release h3 a {
+    color: #a8ff9e !important; /* Lys grønn */
 }
 
 .latest-release .release-hr {
-    border-color: rgba(92, 184, 92, 0.4);
+    border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
+
+
+
+/* Pre-release styling */
 .pre-release {
     background-color: rgba(240, 173, 78, 0.05);
     border-color: rgba(240, 173, 78, 0.4);
@@ -98,16 +163,19 @@ code {
     border-color: rgba(240, 173, 78, 0.4);
 }
 
+/* Loader gif */
 #loader-gif {
     position: absolute;
     bottom: 15%;
     left: 47%;
 }
 
+/* Tekst sentrert */
 #description {
     text-align: center;
 }
 
+/* Tittel som er skjult til det trengs */
 #title {
     display: none;
     margin: 20px 0 10px 0;
@@ -124,6 +192,7 @@ code {
     font-size: 24px;
 }
 
+/* Layout for footer */
 html {
     position: relative;
     min-height: 100%;
@@ -132,6 +201,7 @@ body {
     margin-bottom: 40px;
 }
 
+/* Footer */
 #footer {
     position: absolute;
     bottom: 0;
@@ -143,10 +213,12 @@ body {
     border-top: 1px solid rgba(210, 210, 210, 0.4);
 }
 
+/* Ads */
 #ads {
     margin-top: 20px;
 }
 
+/* Pagination styling */
 #pagination {
 	display: flex;
 	justify-content: center;
@@ -165,4 +237,80 @@ body {
 #per-page select {
     width: 60px;
     margin-left: 5px;
+}
+
+/* --- Dark mode støtte --- */
+
+/* Default light mode styling på body */
+body {
+  background-color: #fff;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* System dark mode via media query */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #ddd;
+  }
+  a, a:hover {
+    color: #539bf5;
+  }
+  .navbar-default {
+    background-color: #1f1f1f;
+    border-color: #333;
+  }
+  .navbar-default .navbar-brand,
+  .navbar-default .navbar-nav > li > a {
+    color: #ddd;
+  }
+  .release {
+    background-color: rgba(255 255 255 / 0.1);
+    border-color: rgba(255 255 255 / 0.2);
+  }
+  #footer {
+    background-color: rgba(30 30 30 / 0.8);
+    border-top-color: rgba(255 255 255 / 0.15);
+    color: #ccc;
+  }
+  #loader-gif img {
+    filter: invert(1);
+  }
+}
+
+/* Dark mode ved body.dark-mode klasse (overstyrer alt) */
+body.dark-mode {
+  background-color: #121212 !important;
+  color: #ddd !important;
+}
+
+body.dark-mode a,
+body.dark-mode a:hover {
+  color: #539bf5 !important;
+}
+
+body.dark-mode .navbar-default {
+  background-color: #1f1f1f !important;
+  border-color: #333 !important;
+}
+
+body.dark-mode .navbar-default .navbar-brand,
+body.dark-mode .navbar-default .navbar-nav > li > a {
+  color: #ddd !important;
+}
+
+body.dark-mode .release {
+  background-color: rgba(255 255 255 / 0.1) !important;
+  border-color: rgba(255 255 255 / 0.2) !important;
+}
+
+body.dark-mode #footer {
+  background-color: rgba(30 30 30 / 0.8) !important;
+  border-top-color: rgba(255 255 255 / 0.15) !important;
+  color: #ccc !important;
+}
+
+body.dark-mode #loader-gif img {
+  filter: invert(1) !important;
 }
