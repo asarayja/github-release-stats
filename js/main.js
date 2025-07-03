@@ -13,12 +13,12 @@ function getQueryVariable(variable) {
     return "";
 }
 
-// Format numbers
+// Format numbers with commas
 function formatNumber(value) {
     return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')
 }
 
-// Validate the user input
+// Validate the user input and enable/disable button
 function validateInput() {
     if ($("#username").val().length > 0 && $("#repository").val().length > 0) {
         $("#get-stats-button").prop("disabled", false);
@@ -38,7 +38,7 @@ $("#username").keyup(function (event) {
     }
 });
 
-// Callback function for getting user repositories
+// Callback function for getting user repositories for typeahead autocomplete
 function getUserRepos() {
     var user = $("#username").val();
 
@@ -60,7 +60,7 @@ function getUserRepos() {
     autoComplete.data('typeahead').source = repoNames;
 }
 
-// Display the stats
+// Display the stats with clickable download links
 function showStats(data) {
     var err = false;
     var errMessage = '';
@@ -120,19 +120,21 @@ function showStats(data) {
                     var assetSize = (asset.size / 1048576.0).toFixed(2);
                     var lastUpdate = asset.updated_at.split("T")[0];
 
-                    downloadInfoHTML += "<li><code>" + asset.name + "</code> (" + assetSize + "&nbsp;MiB) - " +
+                    downloadInfoHTML += "<li><a href='" + asset.browser_download_url + "' target='_blank' rel='noopener noreferrer'>" + asset.name + "</a> (" + assetSize + "&nbsp;MiB) - " +
                         "downloaded " + formatNumber(asset.download_count) + "&nbsp;times. " +
                         "Last&nbsp;updated&nbsp;on&nbsp;" + lastUpdate + "</li>";
 
                     totalDownloadCount += asset.download_count;
                     releaseDownloadCount += asset.download_count;
                 });
+
+                downloadInfoHTML += "</ul>";
             }
 
             html += "<div class='row " + releaseClassNames + "'>";
 
             html += "<h3><span class='glyphicon glyphicon-tag'></span>&nbsp;&nbsp;" +
-                "<a href='" + releaseURL + "' target='_blank'>" + releaseTag + "</a>" +
+                "<a href='" + releaseURL + "' target='_blank' rel='noopener noreferrer'>" + releaseTag + "</a>" +
                 releaseBadge + "</h3>" + "<hr class='release-hr'>";
 
             html += "<h4><span class='glyphicon glyphicon-info-sign'></span>&nbsp;&nbsp;" +
@@ -142,7 +144,7 @@ function showStats(data) {
 
             if (releaseAuthor) {
                 html += "<li><span class='glyphicon glyphicon-user'></span>&nbsp;&nbsp;" +
-                    "Author: <a href='" + releaseAuthor.html_url + "'>@" + releaseAuthor.login  +"</a></li>";
+                    "Author: <a href='" + releaseAuthor.html_url + "' target='_blank' rel='noopener noreferrer'>@" + releaseAuthor.login  +"</a></li>";
             }
 
             html += "<li><span class='glyphicon glyphicon-calendar'></span>&nbsp;&nbsp;" +
